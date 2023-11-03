@@ -1,4 +1,16 @@
-.container {
+.new_category {
     background-color: #fff;
     flex: 4;
+}
+
+.title {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 35px;
+    margin-bottom: 25px;
+}
+
+form {
+    margin: 2em 2em;
 }
