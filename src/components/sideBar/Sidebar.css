@@ -3,6 +3,7 @@
     background-color: #023e8a;;
     flex: 1;
     /* height: calc(100vh - 50px); */
+    height: 100vh;
     position: sticky;
     /* top: 50px; */
     padding: 15px;
@@ -16,6 +17,8 @@
 }
 
 .sidebarListItem {
+    display: flex;
+    align-items: center;
     padding: 8px;
     font-size: 20px;
     margin-bottom: 10px;
