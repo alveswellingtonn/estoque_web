@@ -12,7 +12,7 @@ function NewProduct() {
         <h1>Cadastrar Produto</h1>
       </div>
 
-      <form className='form'>
+      <form>
         <Input
           type='text' text='Nome do Produto' name='name' placeholder='Insira o nome do produto'
         />
