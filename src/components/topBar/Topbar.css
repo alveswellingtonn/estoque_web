@@ -5,7 +5,11 @@
     align-items: center;
     justify-content: space-between;
     padding: 1.5rem;
-    height: 70px;
+    height: 60px;
+    width: 100%;
+    position: sticky;
+    top: 0;
+    z-index: 999;
 }
 
 .topbar div {

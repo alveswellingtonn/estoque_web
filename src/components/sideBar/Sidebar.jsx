@@ -2,13 +2,7 @@ import React from 'react';
 import './Sidebar.css';
 import { Link } from "react-router-dom";
 
-import {
-  FaHouseChimney, FaCartShopping, FaCartPlus, FaBoxesStacked, FaChartLine, FaCirclePlus,
-  FaFolderPlus, FaFolder, FaGrip, FaGripLines, FaListCheck, FaListUl, FaList, FaRectangleList,
-  FaSquarePlus, FaTableList, FaRegRectangleList, FaRegSquarePlus
-} from "react-icons/fa6";
-
-
+import {FaHouseChimney, FaBoxesStacked, FaListUl, FaSquarePlus} from "react-icons/fa6";
 
 function Sidebar() {
   return (

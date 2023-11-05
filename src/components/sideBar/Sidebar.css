@@ -1,17 +1,16 @@
 .sidebar {
-    /* background-color: #f8f7ff; */
-    background-color: #023e8a;;
+    background-color: #023e8a;
     flex: 1;
-    /* height: calc(100vh - 50px); */
-    height: 100vh;
+    height: calc(100vh - 60px);
     position: sticky;
-    /* top: 50px; */
     padding: 15px;
     margin-right: 15px;
-    /* border: solid 10px green; */
+    top: 60px;
+    padding-top: 20px;
 }
 
-.sidebar ul, .link {
+.sidebar ul,
+.link {
     list-style: none;
     text-decoration: none;
 }
