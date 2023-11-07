@@ -1,4 +1,33 @@
-.container {
+.category {
     background-color: #fff;
     flex: 4;
+}
+
+.container_category {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+table {
+    width: 100%;
+}
+
+table, th, td {
+    padding: 10px;
+    border: 2px solid;
+    border-collapse: collapse;
+}
+
+.table_category {
+    margin-right: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* background-color: cornflowerblue; */
+    padding: 20px;
+}
+
+tr:nth-child(even) {
+    background-color: rgba(126, 126, 126, 0.075);
 }
