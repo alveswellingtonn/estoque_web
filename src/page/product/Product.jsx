@@ -62,40 +62,41 @@ function Product() {
       <div className='table_product'>
 
         <table>
-          <tr>
-            <th>Nome</th>
-            <th>Descrição</th>
-            <th>Preço</th>
-            <th>Estoque</th>
-          </tr>
-          {
-      products.map((product) => (
-        <tr key={product.objectId}>
 
-          <td>
-            {product.name}
-          </td>
+          <thead>
+            <tr>
+              <th>Nome</th>
+              <th>Descrição</th>
+              <th>Preço</th>
+              <th>Estoque</th>
+            </tr>
+          </thead>
 
-          <td>
-            {product.description}
-          </td>
-
-          <td>
-            R$ {product.price}
-          </td>
-
-          <td>
-            {product.stock}
-          </td>
-
-
-        </tr>
-      ))}
+          <tbody>
+            {
+              products.map((product) => (
+                <tr key={product.objectId}>
+                  <td>
+                    {product.name}
+                  </td>
+                  <td>
+                    {product.description}
+                  </td>
+                  <td>
+                    R$ {product.price}
+                  </td>
+                  <td>
+                    {product.stock}
+                  </td>
+                </tr>
+              ))}
+          </tbody>
+          
         </table>
 
 
       </div>
-      
+
       {/* products.length > 0 && */}
       {/* {
       products.map((product) => (

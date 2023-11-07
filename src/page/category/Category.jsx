@@ -32,18 +32,25 @@ function Category() {
       <div className="table_category">
 
         <table>
-          <tr>
-            <th>Categoria</th>
-          </tr>
-          {
-            categories.map((category) => (
-              <tr key={category.objectId}>
-                <td>
-                  {category.name}
-                </td>
-              </tr>
-            ))
-          }
+
+          <thead>
+            <tr>
+              <th>Categoria</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            {
+              categories.map((category) => (
+                <tr key={category.objectId}>
+                  <td>
+                    {category.name}
+                  </td>
+                </tr>
+              ))
+            }
+          </tbody>
+          
         </table>
 
       </div>
