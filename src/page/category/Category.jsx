@@ -3,6 +3,7 @@ import './Category.css';
 
 import 'teste.css';
 import 'teste.css';
+import 'teste.css';
 
 function Category() {
 
