@@ -12,6 +12,7 @@ function NewProduct() {
   const [stockProduct, setStockProduct] = useState([]);
 
   const [categories, setCategories] = useState([]);
+  const [category, setCategory] = useState([]);
 
   function createProduct() {
 
@@ -28,16 +29,14 @@ function NewProduct() {
             description: descriptionProduct,
             price: +priceProduct,
             stock: +stockProduct,
+            categoryId: category
           }
         ),
       })
       .then(resp => resp.json())
       .then((data) => {
         console.log(data)
-        // console.log('Nome produto é: ' + nameProduct)
-        // console.log('Descricao: ' + descriptionProduct)
-        // console.log('Preco: ' + priceProduct)
-        // console.log('Quantidade: ' + stockProduct)
+        //console.log('Nome produto é: ' + nameProduct)
       })
       .catch((err) => console.log(err))
   }
@@ -45,9 +44,6 @@ function NewProduct() {
   const submit = (e) => {
     e.preventDefault();
     // console.log('Produto é:' + nameProduct)
-    // console.log('Descricao: ' + descriptionProduct)
-    // console.log('Preco: ' + priceProduct)
-    // console.log('Quantidade: ' + stockProduct)
     createProduct()
   }
 
@@ -68,6 +64,12 @@ function NewProduct() {
   function handleStock (e) {
     setStockProduct(e.target.value);
     // console.log('Valor Input stock: ' + stockProduct)
+  }
+
+  function handleCategory(e) {
+    setCategory(
+       e.target.value,    
+    )
   }
 
   useEffect(() => {
@@ -116,7 +118,7 @@ function NewProduct() {
         />
 
         <Select name='category_id' text='Selecione a categoria' options= {categories}
-          handleOnChange='{handleCategory}' value='{project.category}'
+          handleOnChange={handleCategory} value={categories.objectId}
         ></Select>
 
         <SubmitButton text='Cadastrar'></SubmitButton>
