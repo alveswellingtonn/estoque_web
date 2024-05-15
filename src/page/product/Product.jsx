@@ -22,35 +22,36 @@ function Product() {
       .catch(err => console.log(err))
   }, []);
 
-  // const getAllCountries = async () => {
-  //   try {
-  //     const res = await fetch('https://parseapi.back4app.com/classes/Product',
-  //     {
-  //       method: 'GET',
-  //       headers: {
-  //               'Content-Type': 'application/json',
-  //               'X-Parse-Application-Id': 'G5UQZkgY9ppEKKiXdjzAmNZQMsMJZeZyHX9qSaqO',
-  //               'X-Parse-REST-API-Key': 'U3KlIUQrP7bHZEFOzaV65Jxcgd0nesPdC4K6pjhb',
-  //             }
-  //     }
-  //     );
+  // deletar produto
+  function deletarProduct(productId) {
 
-  //     if (!res.ok) throw new Error("Something went wrong!");
+    fetch(`https://parseapi.back4app.com/parse/functions/delete-product`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'X-Parse-Application-Id': 'G5UQZkgY9ppEKKiXdjzAmNZQMsMJZeZyHX9qSaqO',
+        'X-Parse-REST-API-Key': 'U3KlIUQrP7bHZEFOzaV65Jxcgd0nesPdC4K6pjhb',
+      },
+      body: JSON.stringify({
+        productId: productId
+      })
+    })
+    .then( resp => {
+      console.log(resp)
+      if(resp.ok) {
+        console.log('produto excluido')
+      }
+      else {
+        console.log('NAO REMOVIDO')
+      }
+    })
+    .catch(error => console.log(error)) 
+  }
 
-  //     const data = await res.json();
-
-  //     console.log(data);
-
-  //     setProducts(data);
-
-  //   } catch (error) {
-  //     console.log(error)
-  //   }
-  // };
-
-  // useEffect(() => {
-  //   getAllCountries();
-  // }, []);
+  const remove = (e) => {
+    e.preventDefault();
+    deletarProduct(e.target.value)
+  }
 
   return (
     <div className='product'>
@@ -87,6 +88,9 @@ function Product() {
                   </td>
                   <td>
                     {product.stock}
+                  </td>
+                  <td>
+                  <button onClick={remove} value={product.objectId}> Deletar</button>
                   </td>
                 </tr>
               ))}
