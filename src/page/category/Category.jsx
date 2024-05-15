@@ -21,6 +21,37 @@ function Category() {
       .catch(err => console.log(err))
   }, []);
 
+  // deletar categoria
+  function deletarCategory(categoryId) {
+
+    fetch(`https://parseapi.back4app.com/parse/functions/delete-category`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'X-Parse-Application-Id': 'G5UQZkgY9ppEKKiXdjzAmNZQMsMJZeZyHX9qSaqO',
+        'X-Parse-REST-API-Key': 'U3KlIUQrP7bHZEFOzaV65Jxcgd0nesPdC4K6pjhb',
+      },
+      body: JSON.stringify({
+        categoryId: categoryId
+      })
+    })
+    .then( resp => {
+      console.log(resp)
+      if(resp.ok) {
+        console.log('categoria excluida')
+      }
+      else {
+        console.log('NAO REMOVIDO')
+      }
+    })
+    .catch(error => console.log(error)) 
+  }
+
+  const remove = (e) => {
+    e.preventDefault();
+    deletarCategory(e.target.value)
+  }
+
 
   return (
     <div className='category'>
@@ -45,6 +76,9 @@ function Category() {
                 <tr key={category.objectId}>
                   <td>
                     {category.name}
+                  </td>
+                  <td>
+                    <button onClick={remove} value={category.objectId}>Deletar</button>
                   </td>
                 </tr>
               ))
