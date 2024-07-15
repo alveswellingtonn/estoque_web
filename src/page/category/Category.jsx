@@ -73,12 +73,12 @@ function Category() {
                     Deletar
                   </button>
 
-                  <Link to={`/edit-category/${category.objectId}`} className="link">
-                    <button>
-                      Editar + {category.objectId}
-                    </button>
+                  <Link
+                    to={`/edit-category/${category.objectId}`}
+                    className="link"
+                  >
+                    <button>Editar</button>
                   </Link>
-
                 </td>
               </tr>
             ))}
