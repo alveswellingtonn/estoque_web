@@ -1,14 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import './EditCategory.css';
+import "./EditCategory.css";
 
 import Input from "../../components/form/Input";
 import SubmitButton from "../../components/form/SubmitButton";
 
 function EditCategory() {
-
-    const {categoryId} = useParams();
-    const [category, setCategory] = useState([]);
+  const { categoryId } = useParams();
+  const [category, setCategory] = useState([]);
 
   useEffect(() => {
     fetch("https://parseapi.back4app.com/parse/functions/get-category-id", {
@@ -18,8 +17,8 @@ function EditCategory() {
         "X-Parse-REST-API-Key": "U3KlIUQrP7bHZEFOzaV65Jxcgd0nesPdC4K6pjhb",
       },
       body: JSON.stringify({
-        categoryId: categoryId
-      })
+        categoryId: categoryId,
+      }),
     })
       .then((resp) => resp.json())
       .then((data) => {
@@ -29,38 +28,56 @@ function EditCategory() {
       .catch((err) => console.log(err));
   }, [categoryId]);
 
+  // Função atualiza categoria
+  function updateCategory() {
+    fetch("https://parseapi.back4app.com/parse/functions/update-category", {
+      method: "POST",
+      headers: {
+        "Content-type": "application/json",
+        "X-Parse-Application-Id": "G5UQZkgY9ppEKKiXdjzAmNZQMsMJZeZyHX9qSaqO",
+        "X-Parse-REST-API-Key": "U3KlIUQrP7bHZEFOzaV65Jxcgd0nesPdC4K6pjhb",
+      },
+      body: JSON.stringify({ categoryId: categoryId, name: category }),
+    })
+      .then((resp) => resp.json())
+      .then((data) => {
+        console.log(data);
+        // console.log('categoria: ' + category)
+      })
+      .catch((err) => console.log(err));
+  }
+
   const submit = (e) => {
     e.preventDefault();
     // console.log('nome categoria: ' + category)
-    // createCategory()
-  }
+    updateCategory()
+  };
 
-  function handleChange (e) {
-    setCategory(e.target.value)
+  function handleChange(e) {
+    setCategory(e.target.value);
     // console.log('Valor Input: ' + category)
   }
 
-
   return (
-    <main className='new_category'>
-      
-      <div className='title'>
+    <main className="new_category">
+      <div className="title">
         <h1>Editar Categoria</h1>
       </div>
 
       <form onSubmit={submit}>
-
         <Input
-          type='text' text='Nome da Categoria' name='name' placeholder={category.name} value={category.name}
+          type="text"
+          text="Nome da Categoria"
+          name="name"
+          placeholder={category.name}
+          value={category.name}
           handleOnChange={handleChange}
         />
 
-        <SubmitButton text='Salvar'></SubmitButton>
-
+        <SubmitButton text="Salvar"></SubmitButton>
       </form>
-
     </main>
-  )
+  );
 }
 
-export default EditCategory
+export default EditCategory;
