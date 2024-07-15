@@ -8,6 +8,7 @@ import Product from './page/product/Product';
 import NewProduct from './page/newProduct/NewProduct';
 import Category from './page/category/Category';
 import NewCategory from './page/newCategory/NewCategory';
+import EditCategory from './page/EditCategory/EditCategory';
 
 function App() {
   return (
@@ -27,6 +28,7 @@ function App() {
 
           <Route path='/category' element={<Category/>} />
           <Route path='/new-category' element={<NewCategory/>} />
+          <Route path='/edit-category/:categoryId' element={<EditCategory/>} />
 
         </Routes>
 
