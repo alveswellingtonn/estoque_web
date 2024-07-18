@@ -1,69 +1,64 @@
-import React, { useState, useEffect } from 'react';
-import './Product.css';
+import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom"; 
+import "./Product.css";
 
 function Product() {
-
   const [products, setProducts] = useState([]);
 
   useEffect(() => {
-    fetch('https://parseapi.back4app.com/parse/functions/get-products', {
-      method: 'POST',
+    fetch("https://parseapi.back4app.com/parse/functions/get-products", {
+      method: "POST",
       headers: {
-        'Content-Type': 'application/json',
-        'X-Parse-Application-Id': 'G5UQZkgY9ppEKKiXdjzAmNZQMsMJZeZyHX9qSaqO',
-        'X-Parse-REST-API-Key': 'U3KlIUQrP7bHZEFOzaV65Jxcgd0nesPdC4K6pjhb',
-      }
+        "Content-Type": "application/json",
+        "X-Parse-Application-Id": "G5UQZkgY9ppEKKiXdjzAmNZQMsMJZeZyHX9qSaqO",
+        "X-Parse-REST-API-Key": "U3KlIUQrP7bHZEFOzaV65Jxcgd0nesPdC4K6pjhb",
+      },
     })
       .then((resp) => resp.json())
-      .then(data => {
-        setProducts(data.result)
-        console.log(data.result)
+      .then((data) => {
+        setProducts(data.result);
+        console.log(data.result);
       })
-      .catch(err => console.log(err))
+      .catch((err) => console.log(err));
   }, []);
 
   // deletar produto
   function deletarProduct(productId) {
-
     fetch(`https://parseapi.back4app.com/parse/functions/delete-product`, {
-      method: 'POST',
+      method: "POST",
       headers: {
-        'Content-Type': 'application/json',
-        'X-Parse-Application-Id': 'G5UQZkgY9ppEKKiXdjzAmNZQMsMJZeZyHX9qSaqO',
-        'X-Parse-REST-API-Key': 'U3KlIUQrP7bHZEFOzaV65Jxcgd0nesPdC4K6pjhb',
+        "Content-Type": "application/json",
+        "X-Parse-Application-Id": "G5UQZkgY9ppEKKiXdjzAmNZQMsMJZeZyHX9qSaqO",
+        "X-Parse-REST-API-Key": "U3KlIUQrP7bHZEFOzaV65Jxcgd0nesPdC4K6pjhb",
       },
       body: JSON.stringify({
-        productId: productId
+        productId: productId,
+      }),
+    })
+      .then((resp) => {
+        console.log(resp);
+        if (resp.ok) {
+          console.log("produto excluido");
+        } else {
+          console.log("NAO REMOVIDO");
+        }
       })
-    })
-    .then( resp => {
-      console.log(resp)
-      if(resp.ok) {
-        console.log('produto excluido')
-      }
-      else {
-        console.log('NAO REMOVIDO')
-      }
-    })
-    .catch(error => console.log(error)) 
+      .catch((error) => console.log(error));
   }
 
   const remove = (e) => {
     e.preventDefault();
-    deletarProduct(e.target.value)
-  }
+    deletarProduct(e.target.value);
+  };
 
   return (
-    <div className='product'>
-
-      <div className='container_product'>
+    <div className="product">
+      <div className="container_product">
         <h1>Produtos</h1>
       </div>
 
-      <div className='table_product'>
-
+      <div className="table_product">
         <table>
-
           <thead>
             <tr>
               <th>Nome</th>
@@ -74,31 +69,28 @@ function Product() {
           </thead>
 
           <tbody>
-            {
-              products.map((product) => (
-                <tr key={product.objectId}>
-                  <td>
-                    {product.name}
-                  </td>
-                  <td>
-                    {product.description}
-                  </td>
-                  <td>
-                    R$ {product.price}
-                  </td>
-                  <td>
-                    {product.stock}
-                  </td>
-                  <td>
-                  <button onClick={remove} value={product.objectId}> Deletar</button>
-                  </td>
-                </tr>
-              ))}
+            {products.map((product) => (
+              <tr key={product.objectId}>
+                <td>{product.name}</td>
+                <td>{product.description}</td>
+                <td>R$ {product.price}</td>
+                <td>{product.stock}</td>
+                <td>
+                  <button onClick={remove} value={product.objectId}>
+                    {" "}
+                    Deletar
+                  </button>
+                  <Link
+                    to={`/edit-product/${product.objectId}`}
+                    className="link"
+                  >
+                    <button>Editar</button>
+                  </Link>
+                </td>
+              </tr>
+            ))}
           </tbody>
-          
         </table>
-
-
       </div>
 
       {/* products.length > 0 && */}
@@ -119,9 +111,8 @@ function Product() {
           <p>Não há projetos cadastrados!</p>
         )
       } */}
-
     </div>
-  )
+  );
 }
 
-export default Product
+export default Product;
