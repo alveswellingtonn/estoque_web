@@ -15,7 +15,7 @@ function EditProduct() {
   const [stockProduct, setStockProduct] = useState([]);
 
   const [categories, setCategories] = useState([]);
-  const [categoryId, setCategory] = useState('');
+  const [categoryId, setCategory] = useState("");
 
   useEffect(() => {
     fetch("https://parseapi.back4app.com/parse/functions/get-category", {
@@ -56,10 +56,35 @@ function EditProduct() {
       .catch((err) => console.log(err));
   }, [productId]);
 
+  function updateCategory() {
+    fetch("https://parseapi.back4app.com/parse/functions/update-product", {
+      method: "POST",
+      headers: {
+        "Content-type": "application/json",
+        "X-Parse-Application-Id": "G5UQZkgY9ppEKKiXdjzAmNZQMsMJZeZyHX9qSaqO",
+        "X-Parse-REST-API-Key": "U3KlIUQrP7bHZEFOzaV65Jxcgd0nesPdC4K6pjhb",
+      },
+      body: JSON.stringify({ 
+        productId: productId,
+        name: product,
+        description: descriptionProduct,
+        price: priceProduct,
+        stock: stockProduct,
+        categoryId: categoryId
+      }),
+    })
+      .then((resp) => resp.json())
+      .then((data) => {
+        console.log(data);
+        // console.log('categoria: ' + category)
+      })
+      .catch((err) => console.log(err));
+  }
+
   const submit = (e) => {
     e.preventDefault();
     // console.log('nome categoria: ' + category)
-    //updateCategory()
+    updateCategory();
   };
 
   function handleName(e) {
@@ -136,7 +161,7 @@ function EditProduct() {
           handleOnChange={handleCategory}
           value={categoryId}
         />
-        
+
         <SubmitButton text="Salvar"></SubmitButton>
       </form>
     </main>
